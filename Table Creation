@@ -1,0 +1,57 @@
+CREATE TABLE case(
+	CaseID INT(20) not null, //Primary key for this entity
+	CrimeID INT(20) not null, //Foreign key
+	Status VARCHAR(10) not null,
+	Details VARCHAR(1000) not null,
+	InvestigatingOfficer INT(15) not null
+)
+
+CREATE TABLE Crime(
+	CrimeID INT(20) not null, //Primary key for this entity
+	FIRno INT(20) not null, //Foreign key
+	CrimeType VARCHAR(20),
+	DateOccured DATE,
+	City VARCHAR(20) not null,
+	StreetName VARCHAR(20) not null
+)
+
+CREATE TABLE victim(
+	VictimID INT(20) not null, //Primary key for this entity
+	FIRno INT(20) not null, //Foreign key
+	NID INT(20) not null,
+	FirstName VARCHAR(20) not null,
+	LastName VARCHAR(20) not null,
+	Sex VARCHAR(10) not null,
+	BirthDate DATE,
+	Nationality VARCHAR(15),
+	Occupation VARCHAR(15)
+)
+
+CREATE TABLE Wanted(
+	WantedID INT(10) not null, //Primary key for this entity
+	Name VARCHAR(20) not null,
+	Height INT(10) not null,
+	Detail VARCHAR(1000) not null	
+)
+
+CREATE TABLE petitioner(
+	NID INT(20) not null,
+	FirstName VARCHAR(20) not null,
+	LastName VARCHAR(20) not null,
+	Address VARCHAR(50),
+	PhoneNumber INT(15) not null
+)
+
+CREATE TABLE fir(
+	FIRno INT(20) not null,
+	PetitionerNID INT(30) not null, Foreign key
+	DateReported DATE,
+	Details VARCHAR(1000) not null
+)
+
+CREATE TABLE investigatingOfficer(
+	OfficerID INT(20) not null,
+	FirstName VARCHAR(20) not null,
+	LastName VARCHAR(20) not null,
+	Rank VARCHAR(10) not null
+)
