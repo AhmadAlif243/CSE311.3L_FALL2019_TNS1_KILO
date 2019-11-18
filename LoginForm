@@ -1,0 +1,19 @@
+<html>
+<head>
+	<title> Login Form </title>
+</head>
+<body>
+	<div class="container">
+		<form method="Insert" action="#">
+			<div class="Text">
+				<input type="text" name="Username" placeholder="Enter mail or userid"/>	
+			</div>
+			<div class="Password">
+				<input type="password" name="password" placeholder="password"/>
+			</div>
+			<div class="Submit">
+			<input type="submit" type="submit" value="LOGIN" class="Login"/>
+			</div>
+		</form>
+	</div>
+</body>
