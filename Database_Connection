@@ -1,0 +1,33 @@
+<?php
+
+//taking variable//
+$host="localhost";
+$user="root";                                  //the default name of the server is root.
+$database="criminal database management system";
+$password="";                                 //password here needs to be empty,because that server i am using is localhost and has no password
+
+mysql_connect($host,$user,$password);        //this function is used for connecting server
+mysql_select_db($database);                  //selecting the sdatabase from the specific server
+
+if(isset($_POST['Username']))               //checking the input of the username is not NULL
+{
+	$usname=$_POST['Username'];
+	$password=$_POST['password'];
+	
+	$sql="select* from logininfo where Name='".$usname."' AND Password= '".$password."' limit 1";  
+	$result=mysql_query($sql);                 //doing a query on database and returning a string value
+	
+	if(mysql_num_rows($result)==1)             //getting a boolean value and checking if it matches value of the table in DB we created.and if it matches the showes below comment
+	{
+		echo " Congratulations ";
+		exit();
+	}
+	else                                      //if it does not match then shows below comment
+	{
+		echo " Wrong username or password";
+	}
+}
+?>
+//i am adding the references for easy understanding
+//resource: https://www.youtube.com/watch?v=aIsu9SPcGbU
+//resource: https://www.w3schools.com/php/php_mysql_connect.asp
