@@ -1,0 +1,72 @@
+//Modification on My Groupmate Ahmad Syed's Table from master branch Table Creation file
+
+TABLE case(
+  CaseID INT(20) not null, //Primary key for this entity
+	CrimeID INT(20) not null,                                 //FK, each case has been filed based on one crime
+	Status VARCHAR(10) not null,
+	Details VARCHAR(1000) not null,
+	InvestigatingOfficer INT(15) not null,                   //FK,Each officer is investigating on one or many case
+  FIRno INT(20) not null,                                  //FK,PK,Each case has a firNo to identify the case
+
+)
+
+CREATE TABLE Crime(
+	CrimeID INT(20), not null //Primary key for this entity
+	FIRno INT(20) not null, //Foreign key
+	CrimeType VARCHAR(20),
+	DateOccured DATE,
+	City VARCHAR(20) not null,
+	StreetName VARCHAR(20) not null,
+  VictimID INT(20) not null                              //FK,PK,Each crime has a victim 
+  CriminalID INT(10) not null                            //Fk,PK,Each criminal has commited a crime or more
+  
+  
+)
+
+CREATE TABLE victim(
+	VictimID INT(20) not null, //Primary key for this entity
+  petitionerID INT(20) not null,                       //FK,PK,Victim is a petioner,victim can not be a investigation officer(Totally disjointed)
+	FIRno INT(20) not null, //Foreign key
+	NID INT(20) not null,
+	FirstName VARCHAR(20) not null,
+	LastName VARCHAR(20) not null,
+	Sex VARCHAR(10) not null,
+	BirthDate DATE,
+	Nationality VARCHAR(15),
+	Occupation VARCHAR(15),
+  CriminalID INT(10) not null,                          //FK,Each victim was hurt by at least one criminal
+  CrimeID INT(20),                                      //FK,Each victim was affected by one or more crime
+)
+
+CREATE TABLE Criminal(                                  // Wanted has been changed to criminal
+	CriminalID INT(10) not null, //Primary key for this entity
+	Name VARCHAR(20) not null,
+	Height INT(10) not null,
+	Detail VARCHAR(1000) not null,
+  CrimeID INT(20) not null                             //FK,Every criminal has been commited atleast one or more crime.-
+)
+
+CREATE TABLE petitioner(
+	petitionerID INT(20) not null,                               //PK, Is a invesstigation officer or a victim
+	FirstName VARCHAR(20) not null,
+	LastName VARCHAR(20) not null,
+	Address VARCHAR(50),
+	PhoneNumber INT(15) not null,
+  CaseID INT(20) not null                              //FK,Each petitioner has filed at least a case or more
+)
+
+CREATE TABLE fir(
+	FIRno INT(20) not null,
+	PetitionerNID INT(30) not null, Foreign key
+	DateReported DATE,
+	Details VARCHAR(1000) not null
+)
+
+CREATE TABLE investigatingOfficer(
+	OfficerID INT(20) not null,                         //PK
+  petitioner ID INT(20) not null,                     //FK,PK,Investigation officer can be a petitioner
+  CaseID INT(20) not null,                            //FK,Investigation officer investigating on one or many case
+	FirstName VARCHAR(20) not null,
+	LastName VARCHAR(20) not null,
+	Rank VARCHAR(10) not null
+)
